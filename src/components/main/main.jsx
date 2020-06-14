@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const Main = (props) => {
-  const {name, genre, date, list} = props;
+  const {name, genre, date, list, onFilmTitleButtonClick} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -104,7 +104,7 @@ const Main = (props) => {
                 <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={item} width="280" height="175" />
               </div>
               <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">{item}</a>
+                <a className="small-movie-card__link" href="movie-page.html" onClick={onFilmTitleButtonClick}>{item}</a>
               </h3>
             </article>
           )}
@@ -138,6 +138,7 @@ Main.propTypes = {
   name: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  list: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  list: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onFilmTitleButtonClick: PropTypes.func.isRequired
 };
 

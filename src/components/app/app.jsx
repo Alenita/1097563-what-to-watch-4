@@ -2,10 +2,13 @@ import React from "react";
 import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 
+const filmTitleButtonHandler = () => {};
+
 const App = (props) => {
   const {name, genre, date, list} = props;
 
-  return (<Main name={name} genre={genre} date={date} list={list} />);
+  return (<Main name={name} genre={genre} date={date} list={list}
+    onFilmTitleButtonClick={filmTitleButtonHandler} />);
 };
 
 export default App;

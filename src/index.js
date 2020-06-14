@@ -4,9 +4,9 @@ import App from "./components/app/app.jsx";
 
 
 const filmInfo = {
-  filmName: `The Green Mile`,
+  filmName: `The Grand Budapest Hotel`,
   genre: `Drama`,
-  filmRelease: `1999`
+  filmRelease: `2014`
 };
 
 const filmsList = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
