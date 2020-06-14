@@ -9,6 +9,8 @@ const filmInfo = {
   filmRelease: `1999`
 };
 
+const filmsList = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
+
 ReactDOM.render(
-    <App name={filmInfo.filmName} genre={filmInfo.genre} date={filmInfo.filmRelease} />, document.querySelector(`#root`)
+    <App name={filmInfo.filmName} genre={filmInfo.genre} date={filmInfo.filmRelease} list={filmsList} />, document.querySelector(`#root`)
 );
