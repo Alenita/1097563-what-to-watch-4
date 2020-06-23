@@ -1,11 +1,6 @@
 import React from "react";
-import Enzyme, {mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import Main from "./main.jsx";
-
-Enzyme.configure({
-  adapter: new Adapter(),
-});
+import MoviesList from "./movies-list.jsx";
+import renderer from "react-test-renderer";
 
 const films = [
   {
@@ -34,39 +29,22 @@ const films = [
   },
   {
     poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 6`,
+    title: `Harry Potter - 7`,
   },
   {
     poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 6`,
+    title: `Harry Potter - 8`,
   },
 ];
 
-const filmInfo = {
-  name: `Interstellar`,
-  genre: `Horror`,
-  date: 2014
-};
-
-
-describe(`Main component works properly`, () => {
-  it(`Film title is pressed`, () => {
-    const onFilmTitleButtonClick = jest.fn();
-
-    const main = mount(
-        <Main
-          name={filmInfo.name}
-          genre={filmInfo.genre}
-          date={filmInfo.date}
+it(`<MoviesList/> renders correctly`, () => {
+  const tree = renderer
+        .create(<MoviesList
           films={films}
-          onFilmTitleButtonClick={onFilmTitleButtonClick}
-        />
-    );
+          onFilmTitleButtonClick={() => {}}
+          handleHover={() => {}}
+        />)
+            .toJSON();
 
-    const filmTitleButton = main.find(`h3.small-movie-card__link`).first();
-    filmTitleButton.props().onClick();
-
-    expect(onFilmTitleButtonClick.mock.calls.length).toBe(1);
-  });
+  expect(tree).toMatchSnapshot();
 });
-
