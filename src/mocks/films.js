@@ -1,6 +1,6 @@
 export default [
   {
-    poster: `https://lh3.googleusercontent.com/proxy/jZ1OJtD0JRlLqiLlBZLr9R9UIJ6IwsjLL8WbF3GqUIU_BLOpKDD4-Y-hpCFlX-ech0nwJV7QVqY5xcenyiyWZJaHFs9TBmB7GX21ZxxdfmdIeAXTv0I_w8wbxhFwhQv5s0Wjxo14cZ6GxH_WLffMrlEOFW7MNVKoGaF5BOsicjsZdEWkTW-Eb15uZnDjVcGQwuGaU7jsFuCm8nRHVNe73tQ3iCDa_CX0yrPw1aQMyhaBBXIxeYtoI9nGkvT_waQxh-1pHPxLHXKMiUIIRnwvLRjeTFaiXuZDLbEkUD-RNvEtbFWEcOSgrumrRNBjmJ8mgkUZ7aFFKqWojYS26cfm7EvDroX6LofdqbWCi7dmu03IkBK6jRTIIgoRWVBeXXbaKWifHF6_pcML-b-KlHGW1cxgoXdV8UQX2AWamg`,
+    poster: `https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg`,
     title: `The Grand Budapest Hotel`,
   },
   {

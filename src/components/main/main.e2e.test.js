@@ -48,23 +48,20 @@ const filmInfo = {
   date: 2014
 };
 
-
 describe(`Main component works properly`, () => {
   it(`Film title is pressed`, () => {
     const onFilmTitleButtonClick = jest.fn();
 
     const main = mount(
         <Main
-          name={filmInfo.name}
-          genre={filmInfo.genre}
-          date={filmInfo.date}
+          filmInfo={filmInfo}
           films={films}
           onFilmTitleButtonClick={onFilmTitleButtonClick}
         />
     );
 
-    const filmTitleButton = main.find(`h3.small-movie-card__link`).first();
-    filmTitleButton.props().onClick();
+    const filmTitle = main.find(`h3.small-movie-card__title`).first();
+    filmTitle.props().onClick();
 
     expect(onFilmTitleButtonClick.mock.calls.length).toBe(1);
   });
