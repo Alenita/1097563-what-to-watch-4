@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 const App = (props) => {
   const {filmInfo, films} = props;
 
-  const filmTitleButtonHandler = () => {};
+  const filmTitleHandleClick = () => {};
 
   return (
     <Main
       filmInfo={filmInfo}
       films={films}
-      onFilmTitleButtonClick={filmTitleButtonHandler} />);
+      onFilmTitleClick={filmTitleHandleClick} />);
 };
 
 App.propTypes = {

@@ -9,26 +9,35 @@ class MoviesList extends PureComponent {
     this.state = {
       cardIsHovered: null,
     };
-
+    this._handleMouseEnter = this._handleMouseEnter.bind(this);
+    this._handleMouseLeave = this._handleMouseLeave.bind(this);
   }
 
-  handleHover(card) {
+  _handleMouseEnter(id) {
     this.setState({
-      cardIsHovered: card
+      cardIsHovered: id
     });
   }
 
+  _handleMouseLeave() {
+    this.setState({
+      cardIsHovered: null
+    });
+  }
+
+
   render() {
-    const {films, onFilmTitleButtonClick} = this.props;
+    const {films, onFilmTitleClick} = this.props;
 
     return (
       <div className="catalog__movies-list">
         {films.map((film, i) => (
           <MovieCard
-            key={film + i}
+            key={film.title + i}
             film={film}
-            onCardClick={onFilmTitleButtonClick}
-            onHover={this.handleHover.bind(this, i)}
+            onFilmTitleClick={onFilmTitleClick}
+            onCardHover={this._handleMouseEnter}
+            onCardLeave={this._handleMouseLeave}
           />
         ))}
       </div>
@@ -39,10 +48,14 @@ class MoviesList extends PureComponent {
 MoviesList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape(
-          {poster: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired})
+          {
+            id: PropTypes.number.isRequired,
+            poster: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            src: PropTypes.string.isRequired,
+          }).isRequired
   ).isRequired,
-  onFilmTitleButtonClick: PropTypes.func.isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
 };
 
 export default MoviesList;
