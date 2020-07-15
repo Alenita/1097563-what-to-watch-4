@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {PREVIEW_DELAY} from "../constants/constants.js";
+import {PREVIEW_DELAY} from "../../constants.js";
 
 
 class MovieCard extends PureComponent {
@@ -18,6 +18,7 @@ class MovieCard extends PureComponent {
     this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
     this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
     this._handleCardTitleClick = this._handleCardTitleClick.bind(this);
+    this._handleCardClick = this._handleCardClick.bind(this);
   }
 
   _handleCardMouseEnter() {
@@ -54,6 +55,12 @@ class MovieCard extends PureComponent {
     onFilmTitleClick(id);
   }
 
+  _handleCardClick() {
+    const {film, onFilmCardClick} = this.props;
+    const {id} = film;
+    onFilmCardClick(id);
+  }
+
   render() {
     const {film} = this.props;
     const {isPlaying} = this.state;
@@ -66,6 +73,7 @@ class MovieCard extends PureComponent {
     return (
       <article
         className="small-movie-card catalog__movies-card"
+        onClick={this._handleCardClick}
         onMouseEnter={this._handleCardMouseEnter}
         onMouseLeave={this._handleCardMouseLeave}
       >
@@ -92,6 +100,7 @@ class MovieCard extends PureComponent {
 MovieCard.propTypes = {
   onCardHover: PropTypes.func.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
+  onFilmCardClick: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,

@@ -1,5 +1,5 @@
 import React from "react";
-import MoviesList from "./movies-list.jsx";
+import FullMovieInfo from "./full-movie-info.jsx";
 import renderer from "react-test-renderer";
 
 const films = [
@@ -53,19 +53,25 @@ const films = [
   },
 ];
 
+const filmInfo = {
+  name: `Interstellar`,
+  genre: `Horror`,
+  date: 2014
+};
 
-it(`<MoviesList/> renders correctly`, () => {
+it(`rendering is ok`, () => {
   const tree = renderer
-        .create(<MoviesList
-          films={films}
-          onFilmTitleClick={() => {}}
-          onFilmCardClick={() => {}}
-        />, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-            .toJSON();
+        .create(
+            <FullMovieInfo
+              filmInfo={filmInfo}
+              films={films}
+              onFilmTitleClick={() => {}}
+              onFilmCardClick={() => {}}
+            />, {
+              createNodeMock: () => {
+                return {};
+              }
+            }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

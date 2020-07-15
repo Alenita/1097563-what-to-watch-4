@@ -13,6 +13,7 @@ it(`<MovieCard/> renders correctly`, () => {
   const tree = renderer
         .create(<MovieCard
           film={film}
+          onFilmCardClick={() => {}}
           onCardHover={() => {}}
           onCardLeave={() => {}}
           onFilmTitleClick={() => {}}

@@ -67,12 +67,14 @@ const filmInfo = {
 describe(`Main component works properly`, () => {
   it(`Film title is pressed`, () => {
     const onFilmTitleClick = jest.fn();
+    const onFilmCardClick = jest.fn();
 
     const main = mount(
         <Main
           filmInfo={filmInfo}
           films={films}
           onFilmTitleClick={onFilmTitleClick}
+          onFilmCardClick={onFilmCardClick}
         />
     );
 

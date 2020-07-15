@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 
 const Main = (props) => {
-  const {films, filmInfo, onFilmTitleClick} = props;
+  const {films, filmInfo, onFilmTitleClick, onFilmCardClick} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={filmInfo.backgroundPoster} alt={filmInfo.title} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -36,10 +36,10 @@ const Main = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{filmInfo.name}</h2>
+            <h2 className="movie-card__title">{filmInfo.title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{filmInfo.genre}</span>
-              <span className="movie-card__year">{filmInfo.date}</span>
+              <span className="movie-card__year">{filmInfo.year}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -100,7 +100,9 @@ const Main = (props) => {
 
         <MoviesList
           films={films}
-          onFilmTitleClick={onFilmTitleClick}/>
+          onFilmTitleClick={onFilmTitleClick}
+          onFilmCardClick={onFilmCardClick}
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -126,9 +128,16 @@ const Main = (props) => {
 
 Main.propTypes = {
   filmInfo: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    date: PropTypes.number.isRequired,
+    year: PropTypes.number.isRequired,
+    backgroundPoster: PropTypes.string.isRequired,
+    filmPoster: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.string.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape(
@@ -139,7 +148,8 @@ Main.propTypes = {
             src: PropTypes.string.isRequired
           }).isRequired
   ).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired
+  onFilmTitleClick: PropTypes.func.isRequired,
+  onFilmCardClick: PropTypes.func.isRequired
 };
 
 export default Main;

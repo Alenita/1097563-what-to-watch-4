@@ -65,6 +65,7 @@ it(`rendering is ok`, () => {
           filmInfo={filmInfo}
           films={films}
           onFilmTitleClick={() => {}}
+          onFilmCardClick={() => {}}
         />, {
           createNodeMock: () => {
             return {};

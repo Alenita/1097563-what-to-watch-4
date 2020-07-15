@@ -7,34 +7,38 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const mocks = [
-  {
-    isPlaying: false,
-    muted: true,
-    poster: `https://www.film.ru/sites/default/files/movies/posters/1610055-574057.jpg`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-];
+const onPlay = jest
+  .spyOn(window.HTMLMediaElement.prototype, `play`)
+  .mockImplementation(() => {});
 
-it(`<VideoPlayer/> component can play & pause`, () => {
-  const {isPlaying, muted, poster, src} = mocks;
+const onPause = jest
+  .spyOn(window.HTMLMediaElement.prototype, `load`)
+  .mockImplementation(() => {});
 
-  const videoPlayer = mount(
-      <VideoPlayer
-        isPlaying={isPlaying}
-        poster={poster}
-        src={src}
-        muted={muted}
-      />
-  );
+const poster = `https://www.film.ru/sites/default/files/movies/posters/1610055-574057.jpg`;
+const src = `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`;
+const isPlaying = false;
 
-  const video = videoPlayer.find(`video`);
+const videoPlayer = mount(
+    <VideoPlayer
+      isPlaying={isPlaying}
+      poster={poster}
+      src={src}
+      muted={true}
+    />
+);
 
-  video.simulate(`mouseenter`);
-  expect(videoPlayer.isPlaying).toBe(true);
 
-  video.simulate(`mouseleave`);
-  expect(videoPlayer.isPlaying).toBe(false);
+it(`<VideoPlayer/> component can play`, () => {
+  videoPlayer.setProps({isPlaying: true});
+  expect(onPlay).toHaveBeenCalled();
+  onPlay.mockRestore();
+});
+
+it(`<VideoPlayer/> component can pause`, () => {
+  videoPlayer.setProps({isPlaying: false});
+  expect(onPause).toHaveBeenCalled();
+  onPause.mockRestore();
 });
 
 
