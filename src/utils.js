@@ -1,4 +1,6 @@
 import {filmRating, filmQuality} from "./constants.js";
+import {ALL_GENRES} from "./constants.js";
+import {MAX_GENRES} from "./constants.js";
 
 export const determineFilmRating = (value) => {
   const {LOW_RATE, FINE_RATE, BETTER_RATE, HIGH_RATE} = filmRating;
@@ -19,6 +21,20 @@ export const determineFilmRating = (value) => {
   return rating;
 };
 
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+
+export const getFilmsGenres = (films) => {
+  const genresArray = [ALL_GENRES];
+  films.forEach((film) => {
+    if (!genresArray.includes(film.genre)) {
+      genresArray.push(film.genre);
+    }
+  });
+  return genresArray.slice(0, MAX_GENRES);
+};
 /*
 export const formatNumber = (value) => {
   const formattedRating = value.toString().replace(/^\d+(\.\d{1})?$/);

@@ -62,7 +62,7 @@ const FullMovieInfo = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={filmInfo.backgroundPoster} alt={filmInfo.title} width="218" height="327" />
+            <img src={filmInfo.poster} alt={filmInfo.title} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -131,7 +131,7 @@ FullMovieInfo.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     backgroundPoster: PropTypes.string.isRequired,
-    filmPoster: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratingCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
@@ -141,13 +141,19 @@ FullMovieInfo.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
-      PropTypes.shape(
-          {
-            id: PropTypes.number.isRequired,
-            poster: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            src: PropTypes.string.isRequired
-          }).isRequired
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        backgroundPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired
+      }).isRequired
   ).isRequired,
 };
 

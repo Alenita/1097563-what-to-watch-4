@@ -53,10 +53,10 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._handleMainRender}
+            {this._handleMainRender()}
           </Route>
           <Route exact path="/dev-film">
-            {this._handleMovieInfoRender}
+            {this._handleMovieInfoRender()}
           </Route>
         </Switch>
       </BrowserRouter>
@@ -70,7 +70,7 @@ App.propTypes = {
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
     backgroundPoster: PropTypes.string.isRequired,
-    filmPoster: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     ratingCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
@@ -78,9 +78,19 @@ App.propTypes = {
     starring: PropTypes.string.isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
-      PropTypes.shape(
-          {poster: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired})
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        backgroundPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired
+      }).isRequired
   ).isRequired,
 };
 

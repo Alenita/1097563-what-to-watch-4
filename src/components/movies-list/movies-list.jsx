@@ -7,7 +7,7 @@ class MoviesList extends PureComponent {
     super(props);
 
     this.state = {
-      cardIsHovered: null,
+      cardIsActive: null,
     };
     this._handleMouseEnter = this._handleMouseEnter.bind(this);
     this._handleMouseLeave = this._handleMouseLeave.bind(this);
@@ -48,13 +48,20 @@ class MoviesList extends PureComponent {
 
 MoviesList.propTypes = {
   films: PropTypes.arrayOf(
-      PropTypes.shape(
-          {
-            id: PropTypes.number.isRequired,
-            poster: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            src: PropTypes.string.isRequired,
-          }).isRequired
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        backgroundPoster: PropTypes.string.isRequired,
+        poster: PropTypes.string.isRequired,
+        rating: PropTypes.number.isRequired,
+        ratingCount: PropTypes.number.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired
+      }).isRequired
   ).isRequired,
   onFilmTitleClick: PropTypes.func.isRequired,
   onFilmCardClick: PropTypes.func.isRequired

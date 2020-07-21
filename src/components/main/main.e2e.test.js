@@ -2,6 +2,8 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -9,60 +11,62 @@ Enzyme.configure({
 
 const films = [
   {
-    id: 10,
-    poster: `https://www.film.ru/sites/default/files/movies/posters/1610055-574057.jpg`,
-    title: `Harry Potter - 1`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+    id: 109,
+    title: `No Country for Old Men`,
+    genre: `Thriller`,
+    year: 2007,
+    backgroundPoster: `https://placeimg.com/1300/512/nature`,
+    poster: `https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg`,
+    description: `Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.`,
+    rating: 8.1,
+    ratingCount: 870,
+    director: `Ethan Coen, Joel Coen`,
+    starring: `Tommy Lee Jones, Javier Bardem, Josh Brolin`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
+    runTime: `2h 3m`,
   },
   {
-    id: 9,
-    poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/6/60/Harry_Potter_and_the_Order_of_the_Phoenix_%E2%80%94_movie.jpg/216px-Harry_Potter_and_the_Order_of_the_Phoenix_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 2`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    id: 8,
-    poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/4/45/Harry_Potter_and_the_Goblet_of_Fire_%E2%80%94_movie.jpg/212px-Harry_Potter_and_the_Goblet_of_Fire_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 3`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    id: 7,
-    poster: `https://st.kp.yandex.net/images/film_iphone/iphone360_407636.jpg`,
-    title: `Harry Potter - 4`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    id: 6,
-    poster: `https://www.kino-teatr.ru/movie/posters/big/2/20032.jpg`,
-    title: `Harry Potter - 5`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    id: 5,
-    poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 6`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    id: 4,
-    poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 6`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    id: 3,
-    poster: `https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg`,
-    title: `Harry Potter - 6`,
-    src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
+    id: 109,
+    title: `No Country for Old Men`,
+    genre: `Thriller`,
+    year: 2007,
+    backgroundPoster: `https://placeimg.com/1300/512/nature`,
+    poster: `https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg`,
+    description: `Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.`,
+    rating: 8.1,
+    ratingCount: 870,
+    director: `Ethan Coen, Joel Coen`,
+    starring: `Tommy Lee Jones, Javier Bardem, Josh Brolin`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
+    runTime: `2h 3m`,
+  }
 ];
 
 const filmInfo = {
-  name: `Interstellar`,
-  genre: `Horror`,
-  date: 2014
+  title: `No Country for Old Men`,
+  genre: `Thriller`,
+  year: 2007,
+  backgroundPoster: `https://placeimg.com/1300/512/nature`,
+  poster: `https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg`,
+  id: 1,
+  description: `Violence and mayhem ensue after a hunter stumbles upon a drug deal gone wrong and more than two million dollars in cash near the Rio Grande.`,
+  rating: 8.1,
+  ratingCount: 870,
+  director: `Ethan Coen, Joel Coen`,
+  starring: `Tommy Lee Jones, Javier Bardem, Josh Brolin`,
+  src: `https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm`,
+  runTime: `2h 3m`,
 };
+
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  films,
+  filmInfo,
+  currentGenre: `All_genres`,
+  filteredList: films
+});
+
 
 describe(`Main component works properly`, () => {
   it(`Film title is pressed`, () => {
@@ -70,12 +74,14 @@ describe(`Main component works properly`, () => {
     const onFilmCardClick = jest.fn();
 
     const main = mount(
-        <Main
-          filmInfo={filmInfo}
-          films={films}
-          onFilmTitleClick={onFilmTitleClick}
-          onFilmCardClick={onFilmCardClick}
-        />
+        <Provider store={store}>
+          <Main
+            filmInfo={filmInfo}
+            films={films}
+            onFilmTitleClick={onFilmTitleClick}
+            onFilmCardClick={onFilmCardClick}
+          />
+        </Provider>
     );
 
     const filmTitle = main.find(`h3.small-movie-card__title`).first();

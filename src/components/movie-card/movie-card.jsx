@@ -104,10 +104,19 @@ MovieCard.propTypes = {
   onCardLeave: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    poster: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  }).isRequired,
+    genre: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    backgroundPoster: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    ratingCount: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    starring: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default MovieCard;
+

@@ -16,13 +16,13 @@ exports[`<MoviesList/> renders correctly 1`] = `
       <video
         className="player__video"
         muted={true}
-        poster="https://www.film.ru/sites/default/files/movies/posters/1610055-574057.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+        poster="https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm"
       />
       <img
-        alt="Harry Potter - 1"
+        alt="No Country for Old Men"
         height="175"
-        src="https://www.film.ru/sites/default/files/movies/posters/1610055-574057.jpg"
+        src="https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg"
         width="280"
       />
     </div>
@@ -34,7 +34,7 @@ exports[`<MoviesList/> renders correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
       >
-        Harry Potter - 1
+        No Country for Old Men
       </a>
     </h3>
   </article>
@@ -50,13 +50,13 @@ exports[`<MoviesList/> renders correctly 1`] = `
       <video
         className="player__video"
         muted={true}
-        poster="https://upload.wikimedia.org/wikipedia/ru/thumb/6/60/Harry_Potter_and_the_Order_of_the_Phoenix_%E2%80%94_movie.jpg/216px-Harry_Potter_and_the_Order_of_the_Phoenix_%E2%80%94_movie.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+        poster="https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg"
+        src="https://upload.wikimedia.org/wikipedia/commons/1/19/Ziteil%2C_aerial_video.webm"
       />
       <img
-        alt="Harry Potter - 2"
+        alt="No Country for Old Men"
         height="175"
-        src="https://upload.wikimedia.org/wikipedia/ru/thumb/6/60/Harry_Potter_and_the_Order_of_the_Phoenix_%E2%80%94_movie.jpg/216px-Harry_Potter_and_the_Order_of_the_Phoenix_%E2%80%94_movie.jpg"
+        src="https://pbs.twimg.com/media/EN6cAVzX4AIZT0W.jpg"
         width="280"
       />
     </div>
@@ -68,211 +68,7 @@ exports[`<MoviesList/> renders correctly 1`] = `
         className="small-movie-card__link"
         href="movie-page.html"
       >
-        Harry Potter - 2
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://upload.wikimedia.org/wikipedia/ru/thumb/4/45/Harry_Potter_and_the_Goblet_of_Fire_%E2%80%94_movie.jpg/212px-Harry_Potter_and_the_Goblet_of_Fire_%E2%80%94_movie.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      />
-      <img
-        alt="Harry Potter - 3"
-        height="175"
-        src="https://upload.wikimedia.org/wikipedia/ru/thumb/4/45/Harry_Potter_and_the_Goblet_of_Fire_%E2%80%94_movie.jpg/212px-Harry_Potter_and_the_Goblet_of_Fire_%E2%80%94_movie.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Harry Potter - 3
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://st.kp.yandex.net/images/film_iphone/iphone360_407636.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      />
-      <img
-        alt="Harry Potter - 4"
-        height="175"
-        src="https://st.kp.yandex.net/images/film_iphone/iphone360_407636.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Harry Potter - 4
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://www.kino-teatr.ru/movie/posters/big/2/20032.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      />
-      <img
-        alt="Harry Potter - 5"
-        height="175"
-        src="https://www.kino-teatr.ru/movie/posters/big/2/20032.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Harry Potter - 5
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      />
-      <img
-        alt="Harry Potter - 6"
-        height="175"
-        src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Harry Potter - 6
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      />
-      <img
-        alt="Harry Potter - 6"
-        height="175"
-        src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Harry Potter - 6
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onClick={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
-    >
-      <video
-        className="player__video"
-        muted={true}
-        poster="https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg"
-        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-      />
-      <img
-        alt="Harry Potter - 6"
-        height="175"
-        src="https://upload.wikimedia.org/wikipedia/ru/thumb/9/98/Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg/232px-Harry_Potter_and_the_Deathly_Hallows._Part_1_%E2%80%94_movie.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-      onClick={[Function]}
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-      >
-        Harry Potter - 6
+        No Country for Old Men
       </a>
     </h3>
   </article>
