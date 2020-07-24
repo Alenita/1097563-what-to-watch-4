@@ -19,4 +19,8 @@ export const filmQuality = {
   AWESOME: `Awesome`
 };
 
-
+export const tabsItems = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};

@@ -51,10 +51,28 @@ const filmInfo = {
   runTime: `2h 3m`,
 };
 
+const reviews = [
+  {
+    id: 234,
+    comment: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+    reviewer: `Kate Muir`,
+    reviewDate: `December 24, 2016`,
+    rating: `8,9`
+  },
+  {
+    id: 345,
+    comment: `Anderson's films are too precious for some, but for those of us willing to lose ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added a hint of gravitas to the mix, improving the recipe.`,
+    reviewer: `Bill Goodykoontz`,
+    reviewDate: `November 18, 2015`,
+    rating: `8,0`
+  },
+];
+
 it(`rendering is ok`, () => {
   const tree = renderer
         .create(
             <FullMovieInfo
+              reviews={reviews}
               filmInfo={filmInfo}
               films={films}
               onFilmTitleClick={() => {}}
