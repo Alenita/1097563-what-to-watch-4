@@ -2,12 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {getFilmsGenres} from "../../utils.js";
 import {ActionCreator} from "../../reducer.js";
 import {connect} from "react-redux";
 
+const MoviesListWrapped = withActiveItem(MoviesList);
+
 export const Main = (props) => {
-  const {films, filmInfo, onFilmTitleClick, onFilmCardClick, currentGenre, filteredList, onGenreClick} = props;
+  const {films, filmInfo, onFilmCardClick, currentGenre, filteredList, onGenreClick} = props;
 
   return (<React.Fragment>
     <section className="movie-card">
@@ -73,9 +76,8 @@ export const Main = (props) => {
           genres={getFilmsGenres(films)}
           onGenreClick={onGenreClick}
         />
-        <MoviesList
+        <MoviesListWrapped
           films={filteredList}
-          onFilmTitleClick={onFilmTitleClick}
           onFilmCardClick={onFilmCardClick}
         />
 
@@ -130,7 +132,7 @@ Main.propTypes = {
         src: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
+  // onFilmTitleClick: PropTypes.func.isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
   currentGenre: PropTypes.string.isRequired,
   onGenreClick: PropTypes.func.isRequired,

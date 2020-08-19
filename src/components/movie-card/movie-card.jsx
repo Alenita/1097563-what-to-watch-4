@@ -1,83 +1,70 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {PREVIEW_DELAY} from "../../constants.js";
+// import {PREVIEW_DELAY} from "../../constants.js";
 
 
 class MovieCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      isPlaying: false,
-
-    };
-
-    this.timer = null;
-
-    this._handleCardMouseEnter = this._handleCardMouseEnter.bind(this);
-    this._handleCardMouseLeave = this._handleCardMouseLeave.bind(this);
-    this._handleCardTitleClick = this._handleCardTitleClick.bind(this);
     this._handleCardClick = this._handleCardClick.bind(this);
   }
 
-  _handleCardMouseEnter() {
-    const {film, onCardHover} = this.props;
-    const {id} = film;
+  // _handleCardMouseEnter() {
+  //   const {film, onCardHover} = this.props;
+  //   const {id} = film;
 
-    this.timer = setTimeout(() => {
-      this.setState({
-        isPlaying: true
-      });
-    }, PREVIEW_DELAY);
+  //   this.timer = setTimeout(() => {
+  //     this.setState({
+  //       isPlaying: true
+  //     });
+  //   }, PREVIEW_DELAY);
 
-    onCardHover(id);
-  }
+  //   onCardHover(id);
+  // }
 
-  _handleCardMouseLeave() {
-    const {onCardLeave} = this.props;
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.setState({
-        isPlaying: false
-      });
+  // _handleCardMouseLeave() {
+  //   const {onCardLeave} = this.props;
+  //   if (this.timer) {
+  //     clearTimeout(this.timer);
+  //     this.setState({
+  //       isPlaying: false
+  //     });
 
-      this.timer = null;
-      onCardLeave();
-    }
-  }
+  //     this.timer = null;
+  //     onCardLeave();
+  //   }
+  // }
 
-  _handleCardTitleClick(evt) {
-    const {film, onFilmTitleClick} = this.props;
+  _handleCardClick(evt) {
+    const {film, onItemClick} = this.props;
     const {id} = film;
 
     evt.preventDefault();
-    onFilmTitleClick(id);
-  }
-
-  _handleCardClick() {
-    const {film, onFilmCardClick} = this.props;
-    const {id} = film;
-    onFilmCardClick(id);
+    onItemClick(id);
   }
 
   render() {
-    const {film} = this.props;
-    const {isPlaying} = this.state;
+    const {film, isPlaying, onCardMouseEnter, onCardMouseLeave} = this.props;
     const {
       src,
       poster,
       title
     } = film;
-
+    // посмотреть, как добавить в виде пропсов из хока
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        onClick={this._handleCardClick}
-        onMouseEnter={this._handleCardMouseEnter}
-        onMouseLeave={this._handleCardMouseLeave}
+
+        onMouseEnter={() =>{
+          onCardMouseEnter();
+        }}
+        onMouseLeave={() => {
+          onCardMouseLeave();
+        }}
       >
-        <div className="small-movie-card__image">
+        <div className="small-movie-card__image"
+          onClick={this._handleCardClick}>
           <VideoPlayer
             isPlaying={isPlaying}
             poster={poster}
@@ -88,7 +75,7 @@ class MovieCard extends PureComponent {
         </div>
         <h3
           className="small-movie-card__title"
-          onClick = {this._handleCardTitleClick}
+          onClick = {this._handleCardClick}
         >
           <a className="small-movie-card__link" href="movie-page.html">{title}</a>
         </h3>
@@ -98,10 +85,7 @@ class MovieCard extends PureComponent {
 }
 
 MovieCard.propTypes = {
-  onCardHover: PropTypes.func.isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
+  onItemClick: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -115,7 +99,10 @@ MovieCard.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired
 };
 
 export default MovieCard;
