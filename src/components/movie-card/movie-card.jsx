@@ -1,93 +1,56 @@
-import React, {PureComponent} from "react";
+import React from "react";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
-// import {PREVIEW_DELAY} from "../../constants.js";
+import PageHeader from "../pageheader/pageheader.jsx";
 
 
-class MovieCard extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._handleCardClick = this._handleCardClick.bind(this);
-  }
+const MovieCard = ({filmInfo}) => {
+  return (
+    <section className="movie-card">
+      <div className="movie-card__bg">
+        <img src={filmInfo.backgroundPoster} alt={filmInfo.title} />
+      </div>
 
-  // _handleCardMouseEnter() {
-  //   const {film, onCardHover} = this.props;
-  //   const {id} = film;
+      <h1 className="visually-hidden">WTW</h1>
 
-  //   this.timer = setTimeout(() => {
-  //     this.setState({
-  //       isPlaying: true
-  //     });
-  //   }, PREVIEW_DELAY);
+      <PageHeader />
 
-  //   onCardHover(id);
-  // }
+      <div className="movie-card__wrap">
+        <div className="movie-card__info">
+          <div className="movie-card__poster">
+            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          </div>
 
-  // _handleCardMouseLeave() {
-  //   const {onCardLeave} = this.props;
-  //   if (this.timer) {
-  //     clearTimeout(this.timer);
-  //     this.setState({
-  //       isPlaying: false
-  //     });
+          <div className="movie-card__desc">
+            <h2 className="movie-card__title">{filmInfo.title}</h2>
+            <p className="movie-card__meta">
+              <span className="movie-card__genre">{filmInfo.genre}</span>
+              <span className="movie-card__year">{filmInfo.year}</span>
+            </p>
 
-  //     this.timer = null;
-  //     onCardLeave();
-  //   }
-  // }
-
-  _handleCardClick(evt) {
-    const {film, onItemClick} = this.props;
-    const {id} = film;
-
-    evt.preventDefault();
-    onItemClick(id);
-  }
-
-  render() {
-    const {film, isPlaying, onCardMouseEnter, onCardMouseLeave} = this.props;
-    const {
-      src,
-      poster,
-      title
-    } = film;
-    // посмотреть, как добавить в виде пропсов из хока
-    return (
-      <article
-        className="small-movie-card catalog__movies-card"
-
-        onMouseEnter={() =>{
-          onCardMouseEnter();
-        }}
-        onMouseLeave={() => {
-          onCardMouseLeave();
-        }}
-      >
-        <div className="small-movie-card__image"
-          onClick={this._handleCardClick}>
-          <VideoPlayer
-            isPlaying={isPlaying}
-            poster={poster}
-            src={src}
-            muted={true}
-          />
-          <img src={poster} alt={title} width="280" height="175"/>
+            <div className="movie-card__buttons">
+              <button className="btn btn--play movie-card__button" type="button">
+                <svg viewBox="0 0 19 19" width="19" height="19">
+                  <use xlinkHref="#play-s"></use>
+                </svg>
+                <span>Play</span>
+              </button>
+              <button className="btn btn--list movie-card__button" type="button">
+                <svg viewBox="0 0 19 20" width="19" height="20">
+                  <use xlinkHref="#add"></use>
+                </svg>
+                <span>My list</span>
+              </button>
+            </div>
+          </div>
         </div>
-        <h3
-          className="small-movie-card__title"
-          onClick = {this._handleCardClick}
-        >
-          <a className="small-movie-card__link" href="movie-page.html">{title}</a>
-        </h3>
-      </article>
-    );
-  }
-}
+      </div>
+    </section>
+  );
+};
 
 MovieCard.propTypes = {
-  onItemClick: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+  filmInfo: PropTypes.shape({
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
@@ -97,13 +60,12 @@ MovieCard.propTypes = {
     ratingCount: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired
+    starring: PropTypes.string.isRequired
   }).isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onCardMouseLeave: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired
 };
 
-export default MovieCard;
+const mapStateToProps = (state) => ({
+  filmInfo: state.filmInfo,
+});
 
+export default connect(mapStateToProps)(MovieCard);

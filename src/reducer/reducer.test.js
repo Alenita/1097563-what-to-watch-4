@@ -1,5 +1,5 @@
 import {reducer, ActionType, filterByGenre, initialState} from "./reducer.js";
-import films from "./mocks/films.js";
+import films from "../mocks/films.js";
 
 
 it(`Reducer without additional parameters should return initial state`, () => {

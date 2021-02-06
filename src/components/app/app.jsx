@@ -1,52 +1,33 @@
 import React, {PureComponent} from "react";
-import Main from "../main/main.jsx";
 import PropTypes from "prop-types";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {connect} from "react-redux";
+import Main from "../main/main.jsx";
 import FullMovieInfo from "../full-movie-info/full-movie-info.jsx";
+import {Pages} from "../../helpers/constants.js";
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeCard: null
-    };
-
-    this._handleFilmCardClick = this._handleFilmCardClick.bind(this);
-    this._handleMainRender = this._handleMainRender.bind(this);
-    this._handleMovieInfoRender = this._handleMovieInfoRender.bind(this);
   }
 
-  _handleFilmCardClick(id) {
-    this.setState({
-      activeCard: id,
-    });
-  }
+  _renderApp() {
+    const {currentPage} = this.props;
 
-  _handleMainRender() {
-    const {filmInfo, films} = this.props;
-    return (
-      <Main
-        filmInfo={filmInfo}
-        films={films}
-        onFilmTitleClick={this._handleFilmCardClick}
-        onFilmCardClick={this._handleFilmCardClick}
-      />
-    );
-  }
-
-  _handleMovieInfoRender() {
-    const {filmInfo, films, reviews} = this.props;
-
-    return (
-      <FullMovieInfo
-        filmInfo={filmInfo}
-        films={films}
-        onFilmCardClick={this._handleFilmCardClick}
-        onFilmTitleClick={this._handleFilmCardClick}
-        filmReviews={reviews}
-      />
-    );
+    switch (currentPage) {
+      case Pages.MAIN:
+        return (
+          <Main />
+        );
+      case Pages.MOVIE:
+        return (
+          <FullMovieInfo />
+        );
+      default:
+        return (
+          <Main />
+        );
+    }
   }
 
   render() {
@@ -54,10 +35,10 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._handleMainRender()}
+            {this._renderApp() }
           </Route>
           <Route exact path="/dev-film">
-            {this._handleMovieInfoRender()}
+            <FullMovieInfo />
           </Route>
         </Switch>
       </BrowserRouter>
@@ -66,42 +47,12 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  filmInfo: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    backgroundPoster: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    ratingCount: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starring: PropTypes.string.isRequired
-  }).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        backgroundPoster: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired
-      }).isRequired
-  ).isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        comment: PropTypes.string.isRequired,
-        reviewer: PropTypes.string.isRequired,
-        reviewDate: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-      }).isRequired
-  ).isRequired
+  currentPage: PropTypes.string.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  currentPage: state.currentPage,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);

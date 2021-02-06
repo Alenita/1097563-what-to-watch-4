@@ -1,6 +1,6 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
-import {determineFilmRating} from "../../utils.js";
+import {determineFilmRating} from "../../helpers/utils.js";
 
 const FilmOverview = (props) => {
   const {film} = props;

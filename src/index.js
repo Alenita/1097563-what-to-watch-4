@@ -1,12 +1,9 @@
 import ReactDOM from "react-dom";
 import React from "react";
 import App from "./components/app/app.jsx";
-import films from "./mocks/films.js";
-import filmInfo from "./mocks/film-info.js";
-import reviews from "./mocks/reviews.js";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
-import {reducer} from "./reducer.js";
+import {reducer} from "./reducer/reducer.js";
 
 const store = createStore(
     reducer,
@@ -15,11 +12,7 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        filmInfo={filmInfo}
-        films={films}
-        reviews={reviews}
-      />
+      <App />
     </Provider>,
     document.querySelector(`#root`)
 );

@@ -1,26 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import MovieCard from "../movie-card/movie-card.jsx";
+import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 import withHover from "../../hocs/with-hover/with-hover.js";
 
-const MovieCardWrapped = withHover(MovieCard);
-const MoviesList = (props) => {
-  const {films} = props;
+const MovieCardWrapped = withHover(SmallMovieCard);
 
+const MoviesList = ({films, render}) => {
   return (
-
-    <div className="catalog__movies-list">
-      {films.map((film, i) => (
-        <MovieCardWrapped
-          key={film.title + i}
-          film={film}
-          // onFilmTitleClick={onFilmTitleClick}
-          // onFilmCardClick={onFilmCardClick}
-          // onCardHover={_handleMouseEnter}
-          // onCardLeave={_handleMouseLeave}
-        />
-      ))}
-    </div>
+    <React.Fragment>
+      <div className="catalog__movies-list">
+        {films.map((film, i) => (
+          <MovieCardWrapped
+            key={film.title + i}
+            film={film}
+          />
+        ))}
+      </div>
+      {render()}
+    </React.Fragment>
   );
 };
 
@@ -42,8 +39,7 @@ MoviesList.propTypes = {
         src: PropTypes.string.isRequired
       }).isRequired
   ).isRequired,
-  // onFilmTitleClick: PropTypes.func.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired
+  render: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

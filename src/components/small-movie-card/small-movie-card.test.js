@@ -1,5 +1,5 @@
 import React from "react";
-import MovieCard from "./movie-card.jsx";
+import SmallMovieCard from "./small-movie-card.jsx";
 import renderer from "react-test-renderer";
 
 const film = {
@@ -20,7 +20,7 @@ const film = {
 
 it(`<MovieCard/> renders correctly`, () => {
   const tree = renderer
-        .create(<MovieCard
+        .create(<SmallMovieCard
           film={film}
           onFilmCardClick={() => {}}
           onCardHover={() => {}}

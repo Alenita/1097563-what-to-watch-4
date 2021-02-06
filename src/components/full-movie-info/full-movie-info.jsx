@@ -1,158 +1,41 @@
-import React, {Fragment, PureComponent} from "react";
-import SimilarMovies from "../similar-movies/similar-movies.jsx";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
-import {tabsItems} from "../../constants.js";
-import Tabs from "../tabs/tabs.jsx";
-import FilmOverview from "../film-overview/film-overview.jsx";
-import FilmReviews from "../film-reviews/film-reviews.jsx";
-import FilmDetails from "../film-details/film-details.jsx";
+import {connect} from "react-redux";
 
-class FullMovieInfo extends PureComponent {
-  constructor(props) {
-    super(props);
+import MovieCardHero from "../movie-card-hero/movie-card-hero.jsx";
+import MovieCardDescription from "../movie-card-description/movie-card-description.jsx";
+import withShowmore from "../../hocs/with-show-more/with-show-more.js";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import MoviesList from "../movies-list/movies-list.jsx";
+import {tabsItems} from "../../helpers/constants.js";
+import Footer from "../footer/footer.jsx";
 
-    this.state = {
-      currentTab: tabsItems.OVERVIEW,
-    };
+const MoviesListWrapped = withShowmore(MoviesList);
+const MovieDescriptionWrapped = withActiveItem(MovieCardDescription);
 
-    this._handleTabCLick = this._handleTabCLick.bind(this);
-  }
-
-  _handleTabCLick(tab) {
-    this.setState({
-      currentTab: tab,
-    });
-  }
-
-  _changeTab() {
-    const {currentTab} = this.state;
-    const {filmInfo, filmReviews} = this.props;
-
-    switch (currentTab) {
-      case tabsItems.OVERVIEW:
-        return <FilmOverview
-          film={filmInfo}
-        />;
-
-      case tabsItems.REVIEWS:
-        return <FilmReviews
-          reviews={filmReviews}
-        />;
-
-      case tabsItems.DETAILS:
-        return <FilmDetails
-          film={filmInfo}
-        />;
-      default:
-        return <FilmOverview
-          film={filmInfo}
-        />;
-    }
-  }
-  render() {
-    const {filmInfo, films, onFilmCardClick, onFilmTitleClick} = this.props;
-
-    return (<Fragment>
+const FullMovieInfo = ({filmInfo}) => {
+  return (
+    <Fragment>
       <section className="movie-card movie-card--full">
-        <div className="movie-card__hero">
-          <div className="movie-card__bg">
-            <img src={filmInfo.backgroundPoster} alt={filmInfo.title} />
-          </div>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__desc">
-              <h2 className="movie-card__title">{filmInfo.title}</h2>
-              <p className="movie-card__meta">
-                <span className="movie-card__genre">{filmInfo.genre}</span>
-                <span className="movie-card__year">{filmInfo.year}</span>
-              </p>
-
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="movie-card__wrap movie-card__translate-top">
-          <div className="movie-card__info">
-            <div className="movie-card__poster movie-card__poster--big">
-              <img src={filmInfo.poster} alt={filmInfo.title} width="218" height="327" />
-            </div>
-
-            <div className="movie-card__desc">
-              <Tabs
-                onTabCLick={this._handleTabCLick}
-                currentTab={this.state.currentTab}
-                tabsItems={tabsItems}
-              />
-
-              {this._changeTab()}
-
-            </div>
-          </div>
-        </div>
+        <MovieCardHero
+          filmInfo={filmInfo}
+        />
+        <MovieDescriptionWrapped
+          filmInfo={filmInfo}
+          defaultActiveItem={tabsItems.OVERVIEW}
+        />
       </section>
 
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <SimilarMovies
-            filmInfo={filmInfo}
-            films={films}
-            onFilmTitleClick={onFilmTitleClick}
-            onFilmCardClick={onFilmCardClick}
-          />
+          <MoviesListWrapped />
         </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
-    </Fragment>);
-  }
-}
+    </Fragment>
+  );
+};
 
 FullMovieInfo.propTypes = {
   filmInfo: PropTypes.shape({
@@ -167,32 +50,10 @@ FullMovieInfo.propTypes = {
     director: PropTypes.string.isRequired,
     starring: PropTypes.string.isRequired
   }).isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
-  filmReviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        comment: PropTypes.string.isRequired,
-        reviewer: PropTypes.string.isRequired,
-        reviewDate: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-      }).isRequired
-  ).isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        backgroundPoster: PropTypes.string.isRequired,
-        poster: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-        ratingCount: PropTypes.number.isRequired,
-        description: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        starring: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired
-      }).isRequired
-  ).isRequired,
 };
 
-export default FullMovieInfo;
+const mapStateToProps = (state) => ({
+  filmInfo: state.filmInfo,
+});
+
+export default connect(mapStateToProps)(FullMovieInfo);

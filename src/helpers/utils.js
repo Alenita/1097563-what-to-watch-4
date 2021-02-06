@@ -35,6 +35,14 @@ export const getFilmsGenres = (films) => {
   });
   return genresArray.slice(0, MAX_GENRES);
 };
+
+export const filterFilmsByGenre = (films, currentGenre) => {
+  if (currentGenre === ALL_GENRES) {
+    return films;
+  }
+  return films.filter((film) => film.genre === currentGenre);
+};
+
 /*
 export const formatNumber = (value) => {
   const formattedRating = value.toString().replace(/^\d+(\.\d{1})?$/);

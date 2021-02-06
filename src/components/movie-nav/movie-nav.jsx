@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Tabs = (props) => {
-  const {onTabCLick, currentTab, tabsItems} = props;
+
+const MovieNav = (props) => {
+  const {activeItem, tabsItems, onItemCLick} = props;
   const tabs = Object.values(tabsItems);
 
   return (
@@ -12,13 +13,13 @@ const Tabs = (props) => {
           return (
             <li
               key={tab + i}
-              className={`movie-nav__item ${tab === currentTab ? `movie-nav__item--active` : ``}`}
+              className={`movie-nav__item ${tab === activeItem ? `movie-nav__item--active` : ``}`}
             >
               <a href="#"
                 className="movie-nav__link"
                 onClick={((evt) => {
                   evt.preventDefault();
-                  onTabCLick(tab);
+                  onItemCLick(tab);
                 })}>{tab}</a>
             </li>);
         })}
@@ -27,9 +28,9 @@ const Tabs = (props) => {
   );
 };
 
-Tabs.propTypes = {
-  onTabCLick: PropTypes.func.isRequired,
-  currentTab: PropTypes.string.isRequired,
+MovieNav.propTypes = {
+  onItemCLick: PropTypes.func.isRequired,
+  activeItem: PropTypes.string.isRequired,
   tabsItems: PropTypes.shape({
     OVERVIEW: PropTypes.string.isRequired,
     DETAILS: PropTypes.string.isRequired,
@@ -37,4 +38,4 @@ Tabs.propTypes = {
   }).isRequired,
 };
 
-export default Tabs;
+export default MovieNav;
